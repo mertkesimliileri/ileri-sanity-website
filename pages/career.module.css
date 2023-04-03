@@ -1,0 +1,120 @@
+.section {
+    padding-top: 6rem;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    justify-content: center;
+    --bs-gutter-x: 2.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y)*-1);
+    margin-right: calc(var(--bs-gutter-x)/-2);
+    margin-left: calc(var(--bs-gutter-x)/-2);
+}
+
+.column {
+    text-align: justify;
+    position: relative;
+}
+
+.header {
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+    text-align: center;
+    font-size: 2.6875rem;
+}
+
+.sticker {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    align-items: center;
+    border-bottom: 1px solid #f1f4f8;
+    border-top: 1px solid #f1f4f8;
+    --bs-gutter-x: 2.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(var(--bs-gutter-y)*-1);
+    margin-right: calc(var(--bs-gutter-x)/-2);
+    margin-left: calc(var(--bs-gutter-x)/-2);
+}
+
+.colAuto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x)/2);
+    padding-left: calc(var(--bs-gutter-x)/2);
+    margin-top: var(--bs-gutter-y);
+}
+
+.col {
+    background-color: white;
+    z-index: 9999;
+    flex: 1 0 0%;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x)/2);
+    padding-left: calc(var(--bs-gutter-x)/2);
+    margin-top: var(--bs-gutter-y);
+}
+
+.date {
+    color: #869ab8;
+    text-align: justify;
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding-top: 3rem;
+    }
+    
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+    .container {
+        max-width: 720px;
+    }
+
+    .column {
+        flex: 0 0 auto;
+        width: 75%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1040px;
+    }
+
+    .column {
+        flex: 0 0 auto;
+        width: 66.66667%;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 768px) {
+    .container {
+        max-width: 540px;
+    }
+
+    .column {
+        flex: 0 0 auto;
+        width: 83.33333%;
+    }
+}
+

@@ -1,0 +1,132 @@
+.navbar {
+    background: white;
+    z-index: 1030;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1.25rem 1.25rem;
+}
+
+.containerFluid {
+    display: flex;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: auto;
+}
+
+.navbarBrand {
+    color: #335eea;
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
+    margin-right: 0;
+    font-size: 1.5rem;
+    white-space: nowrap;
+}
+
+.navbarBrandImg {
+    max-height: 2.4rem;
+    width: auto;
+}
+
+.navbarCollapse {
+    align-items: center;
+    display: flex;
+}
+
+.navLink {
+    color: #506690;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    font-weight: 500;
+}
+
+.navLink:hover {
+    color: #335eea;
+}
+
+.navbarToggler {
+    color: #506690;
+    border-color: transparent;
+    cursor: pointer;
+    padding: 0.25rem 0.75rem;
+    font-size: 1.1875rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    transition: box-shadow .15s ease-in-out;
+}
+
+.navbarTogglerIcon {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='%23506690' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100%;
+}
+
+.navbarm {
+    transform: scale(1);
+    transition: all .2s ease-in-out;
+    transition-property: visibility,transform;
+    transform-origin: top right;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    height: auto;
+    max-height: calc(100% - 2rem)!important;
+    width: calc(100% - 2rem);
+    background-color: #fff;
+    border-radius: 0.375rem;
+    box-shadow: 0 1.5rem 4rem rgb(22 28 45 / 15%);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 2;
+}
+
+.navbarNav {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    margin-top: 0;
+}
+
+.navmLink {
+    padding: 1.5rem;
+    color: #506690;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    border-top: 1px solid #f1f4f8;
+}
+
+.navmLinkActive {
+    padding: 1.5rem;
+    color: #506690;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    border-top: 1px solid #f1f4f8;
+}
+
+.navbarm .navbarToggler {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1;
+    margin-left: auto;
+    color: #506690;
+    border-color: transparent;
+    padding: 0.25rem 0.75rem;
+    font-size: 1.1875rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.375rem;
+    transition: box-shadow .15s ease-in-out;
+}
