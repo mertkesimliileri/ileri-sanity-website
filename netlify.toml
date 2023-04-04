@@ -11,7 +11,10 @@
     TERM = "xterm"
 
 [[plugins]]
-  package = "@netlify/plugin-nextjs"
+  package = "netlify-plugin-cypress"
+  [plugins.inputs]
+      record = true
+      group = "Testing Built Site"
 
 [functions]
   node_bundler = "esbuild"
