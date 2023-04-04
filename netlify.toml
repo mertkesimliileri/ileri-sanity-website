@@ -10,5 +10,8 @@
     # set TERM variable for terminal output
     TERM = "xterm"
 
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 [functions]
   node_bundler = "esbuild"
