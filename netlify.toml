@@ -1,6 +1,5 @@
 [build]
   command = "next build && next export"
-  publish = "public"
   functions = "functions/"
 
   [build.environment]
@@ -16,3 +15,5 @@
       record = true
       group = "Testing Built Site"
 
+[functions]
+  node_bundler = "esbuild"
