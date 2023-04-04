@@ -3,8 +3,37 @@ import styles from "./contact.module.css"
 import { AiOutlineArrowDown } from "@react-icons/all-files/ai/AiOutlineArrowDown";
 import Navbar from "../Layout/navbar"
 import Footer from "../Layout/footer"
+import { useForm } from "react-hook-form";
+
 
 const Contact = () => {
+
+    const { register, handleSubmit, errors, reset } = useForm();
+
+
+    const encode = (data) => {
+        return Object.keys(data)
+            .map(
+                (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+            )
+            .join("&")
+    }
+
+    const handlePost = (formData, event) => {
+        fetch(`/`, {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode({ "form-name": "contact-form", ...formData }),
+        })
+            .then((response) => {
+                reset()
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+        event.preventDefault()
+    }
 
     return (
         <>
@@ -44,36 +73,66 @@ const Contact = () => {
                     </div>
                 </div>
             </section>
-            <section>
-                <form name="contact" method="POST" data-netlify="true">
-                    <div class="field">
-                        <label class="label">Your Name:
-                            <input class="input" type="text" name="name" />
-                        </label>
-                    </div>
-                    <div class="field">
-                        <label class="label">Your Email:
-                            <input class="input" type="email" name="email" />
-                        </label>
-                    </div>
-                    <div class="field">
-                        <label for="role[]" class="label">Your Role:</label>
-                        <div class="select is-multiple">
-                            <select name="role[]" multiple size="2">
-                                <option value="leader">Leader</option>
-                                <option value="follower">Follower</option>
-                            </select>
+            <section className={styles.contact}>
+                <div className={styles.container}>
+                    <div className={styles.row}>
+                        <div className={styles.column}>
+                            <h2 className={styles.contactHeader}>Kısaca yazıp mı konuşalım?</h2>
                         </div>
                     </div>
-                    <div class="field">
-                        <label class="label">Message:
-                            <textarea class="textarea" name="message"></textarea>
-                        </label>
+                    <div className={styles.row}>
+                        <div className={styles.column}>
+                            <form
+                                onSubmit={handleSubmit(handlePost)}
+                                name="contact-form"
+                                method="POST"
+                                action="/success/"
+                                data-netlify="true"
+                            >
+
+                                <input type="hidden" name="form-name" value="contact-form" />
+                                <input
+                                    type="hidden"
+                                    value="contact-form"
+                                    {...register('formId', { required: true })}
+                                />
+                                <div className={styles.row}>
+                                    <div className={styles.formColumn}>
+                                        <div className={styles.formGroup}>
+                                        <label className={styles.label} htmlFor="name">
+                                            Name
+                                        </label>
+                                        <input placeholder="Kim?" className={styles.input} {...register('name', { required: true })} />
+                                        </div>
+                                    </div>
+                                    <div className={styles.formColumn}>
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.label} htmlFor="email">
+                                            Email
+                                        </label>
+                                        <input placeholder="ornek@benimurunum.com" className={styles.input} {...register('email', { required: true })} />
+                                    </div>
+                                    </div>
+                                </div>
+                                <div className={styles.row}>
+                                    <div className={styles.messageColumn}>
+                                        <div className={styles.formGroupMsg}>
+                                        <label className={styles.label} htmlFor="message">
+                                            Message
+                                        </label>
+                                        <textarea placeholder="Şimdi şöyle bir düşümüz var..." className={styles.message} rows="5" {...register('message', { required: true })} />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={styles.row}>
+                                    <div className={styles.buttonColumn}>
+                                        <button className={styles.submit} type="submit">Gönder!</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="field">
-                        <button class="button is-primary is-medium" type="submit">Send</button>
-                    </div>
-                </form>
+                </div>
             </section>
             <Footer />
         </>

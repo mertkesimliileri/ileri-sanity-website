@@ -37,6 +37,7 @@
     "prismjs": "^1.25.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-hook-form": "^7.43.9",
     "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
