@@ -11,7 +11,7 @@
     TERM = "xterm"
 
 [[plugins]]
-  package = "netlify-plugin-cypress"
+  package = "@netlify/plugin-nextjs"
   [plugins.inputs]
       record = true
       group = "Testing Built Site"
