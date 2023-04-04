@@ -16,5 +16,3 @@
       record = true
       group = "Testing Built Site"
 
-[functions]
-  node_bundler = "esbuild"
