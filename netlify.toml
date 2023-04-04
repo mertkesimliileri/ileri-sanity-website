@@ -1,6 +1,6 @@
 [build]
   command = "npm run build"
-  publish = "pages/index.js"
+  publish = ".next"
   functions = "functions/"
 
   [build.environment]
