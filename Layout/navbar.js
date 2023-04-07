@@ -6,6 +6,7 @@ import { IoCloseOutline } from "@react-icons/all-files/io5/IoCloseOutline";
 import { useRouter } from 'next/router';
 import tr from "../Locales/tr";
 import en from "../Locales/en";
+import Head from 'next/head';
 
 
 const Navbar = () => {
@@ -65,63 +66,65 @@ const Navbar = () => {
     ];
 
     return (
-        <header className={styles.navbar}>
-            <div className={styles.containerFluid}>
-                <a className={styles.navbarBrand} href="/">
-                    <img
-                        className={styles.navbarBrandImg}
-                        alt="İleriİşler"
-                        src='https://www.ileriisler.com/storage/temp/public/imageresizecache/687/218/d69/687218d69094c0711c78d7da917b41022d25f6a2c85968887e62e96df8b2d5c3.png'>
-                    </img>
-                </a>
-                {isVisible ?
-                    <button onClick={toggleNavbar} className={styles.navbarToggler}>
-                        <span className={styles.navbarTogglerIcon}></span>
-                    </button> :
-                    <div className={styles.navbarCollapse}>
-                        <Link className={styles.navLink} href="/" exact>
-                            <a className={styles.navLink}>{t.home}</a>
-                        </Link>
-                        <Link className={styles.navLink} href="/about">
-                            <a className={styles.navLink}>{t.about}</a>
-                        </Link>
-                        <Link className={styles.navLink} href="/projects">
-                            <a className={styles.navLink}>{t.works}</a>
-                        </Link>
-                        <Link className={styles.navLink} href="/career">
-                            <a className={styles.navLink}>{t.join}</a>
-                        </Link>
-                        <Link className={styles.navLink} href="/contact">
-                            <a className={styles.navLink}>{t.contact}</a>
-                        </Link>
-                        <button className={styles.navLinkButton} value={locale} onClick={handleLocale}>{locale} </button>
+        <><Head>
+            <title>İleri İşler</title>
+            <script src="https://unpkg.com/@mux/mux-player"></script>
+        </Head><header className={styles.navbar}>
+                <div className={styles.containerFluid}>
+                    <a className={styles.navbarBrand} href="/">
+                        <img
+                            className={styles.navbarBrandImg}
+                            alt="İleriİşler"
+                            src='https://www.ileriisler.com/storage/temp/public/imageresizecache/687/218/d69/687218d69094c0711c78d7da917b41022d25f6a2c85968887e62e96df8b2d5c3.png'>
+                        </img>
+                    </a>
+                    {isVisible ?
+                        <button onClick={toggleNavbar} className={styles.navbarToggler}>
+                            <span className={styles.navbarTogglerIcon}></span>
+                        </button> :
+                        <div className={styles.navbarCollapse}>
+                            <Link className={styles.navLink} href="/" exact>
+                                <a className={styles.navLink}>{t.home}</a>
+                            </Link>
+                            <Link className={styles.navLink} href="/about">
+                                <a className={styles.navLink}>{t.about}</a>
+                            </Link>
+                            <Link className={styles.navLink} href="/projects">
+                                <a className={styles.navLink}>{t.works}</a>
+                            </Link>
+                            <Link className={styles.navLink} href="/career">
+                                <a className={styles.navLink}>{t.join}</a>
+                            </Link>
+                            <Link className={styles.navLink} href="/contact">
+                                <a className={styles.navLink}>{t.contact}</a>
+                            </Link>
+                            <button className={styles.navLinkButton} value={locale} onClick={handleLocale}>{locale} </button>
 
+                        </div>}
+                    <div style={{ visibility: display }} className={styles.navbarm}>
+                        <button onClick={toggleNavbarClose} className={styles.navbarToggler}>
+                            <IoCloseOutline />
+                        </button>
+                        <ul className={styles.navbarNav}>
+                            <Link className={styles.navmLinkActive} href="/" exact>
+                                <a className={styles.navmLinkActive}>{t.home}</a>
+                            </Link>
+                            <Link className={styles.navmLink} href="/about">
+                                <a className={styles.navmLink}>{t.about}</a>
+                            </Link>
+                            <Link className={styles.navmLink} href="/projects">
+                                <a className={styles.navmLink}>{t.works}</a>
+                            </Link>
+                            <Link className={styles.navmLink} href="/career">
+                                <a className={styles.navmLink}>{t.join}</a>
+                            </Link>
+                            <Link className={styles.navmLink} href="/contact">
+                                <a className={styles.navmLink}>{t.contact}</a>
+                            </Link>
+                        </ul>
                     </div>
-                }
-                <div style={{ visibility: display }} className={styles.navbarm}>
-                    <button onClick={toggleNavbarClose} className={styles.navbarToggler}>
-                        <IoCloseOutline />
-                    </button>
-                    <ul className={styles.navbarNav}>
-                        <Link className={styles.navmLinkActive} href="/" exact>
-                            <a className={styles.navmLinkActive}>{t.home}</a>
-                        </Link>
-                        <Link className={styles.navmLink} href="/about">
-                            <a className={styles.navmLink}>{t.about}</a>
-                        </Link>
-                        <Link className={styles.navmLink} href="/projects">
-                            <a className={styles.navmLink}>{t.works}</a>
-                        </Link>
-                        <Link className={styles.navmLink} href="/career">
-                            <a className={styles.navmLink}>{t.join}</a>
-                        </Link>
-                        <Link className={styles.navmLink} href="/contact">
-                            <a className={styles.navmLink}>{t.contact}</a>
-                        </Link>
-                    </ul>
                 </div>
-            </div>
-        </header>
+            </header></>
     )
 }
 

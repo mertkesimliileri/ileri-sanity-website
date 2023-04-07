@@ -1,5 +1,4 @@
-import Document, { Html, Main, NextScript } from 'next/document'
-import Head from 'next/head'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -19,8 +18,6 @@ class MyDocument extends Document {
         awesome.min.css" rel="stylesheet" integrity="sha384-
         wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" 
         crossorigin="anonymous" />
-        <title>İleri İşler</title>
-        <script src="https://unpkg.com/@mux/mux-player"></script>
         </Head>
         <body>
           <Main />
