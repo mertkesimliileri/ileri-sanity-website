@@ -2,6 +2,7 @@
   command = "npm run build && npm export"
   publish = "out"
   functions = "functions/"
+  base = "client"
 
 [[plugins]]
   package = "netlify-plugin-cypress"
