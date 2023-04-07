@@ -2,7 +2,6 @@
   command = "yarn build && yarn export"
   publish = "out"
   functions = "functions/"
-  CI = false
 
 [[plugins]]
   package = "netlify-plugin-cypress"
