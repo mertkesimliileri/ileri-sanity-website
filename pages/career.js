@@ -5,25 +5,32 @@ import styles from "./career.module.css"
 import SanityBlockContent from '@sanity/block-content-to-react'
 import Navbar from "../Layout/navbar"
 import Footer from "../Layout/footer"
+import { useRouter } from 'next/router';
+import tr from "../Locales/tr";
+import en from "../Locales/en";
 
 const Career = () => {
     const [careerData, setCareer] = useState(null);
+    const router = useRouter();
+    const { locale, defaultLocale } = router;
+
+    const t = locale === "en" ? en : tr;
 
     useEffect(() => {
-      sanityClient.fetch(`*[_type == "career"]{
-          publishedAt,
-          body
-      }`)
-      .then((data) => setCareer(data))
-      .catch(console.error);
-    },[])
+        sanityClient.fetch(`*[_type == "career" && language == '${locale}']{
+        publishedAt,
+        body
+    }`)
+            .then((data) => setCareer(data))
+            .catch(console.error);
+    }, [])
     return (
       <><Navbar /><section className={styles.section}>
             <div className={styles.container}>
                 <div className={styles.row}>
                     <div className={styles.column}>
                         <h1 className={styles.header}>
-                            Bize katılın
+                            {t.join}
                         </h1>
                         {careerData && careerData.map((post, index) => <>
                             <div className={styles.sticker}>

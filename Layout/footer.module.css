@@ -23,6 +23,18 @@
     margin-left: calc(var(--bs-gutter-x)/-2);
 }
 
+.navLinkButton {
+    color: #506690;
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    font-weight: 500;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    background-color: transparent;
+    border: none;
+    text-transform: uppercase;
+}
+
 .columnImg {
     flex: 0 0 auto;
     width: 25%;

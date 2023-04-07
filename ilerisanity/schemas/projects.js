@@ -19,5 +19,16 @@ export default defineType({
       title: 'Body',
       type: 'blockContent',
     }),
+    defineField({
+      title: "Language",
+      type: "string",
+      name: "language",
+      options: {
+        list: [
+            {title: 'English', value: 'en'},
+            {title: 'Turkish', value: 'tr'}
+          ]
+      }
+    }),
   ],
 })

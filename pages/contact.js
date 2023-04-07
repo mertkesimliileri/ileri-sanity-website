@@ -4,11 +4,18 @@ import { AiOutlineArrowDown } from "@react-icons/all-files/ai/AiOutlineArrowDown
 import Navbar from "../Layout/navbar"
 import Footer from "../Layout/footer"
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/router';
+import tr from "../Locales/tr";
+import en from "../Locales/en";
 
 
 const Contact = () => {
 
     const { register, handleSubmit, errors, reset } = useForm();
+    const router = useRouter();
+    const { locale, defaultLocale } = router;
+
+    const t = locale === "en" ? en : tr;
 
 
     const encode = (data) => {
@@ -42,8 +49,8 @@ const Contact = () => {
                 <div className={styles.container}>
                     <div className={styles.row}>
                         <div className={styles.column}>
-                            <h1 className={styles.header}>Ulaşın bize!</h1>
-                            <p className={styles.text}>Geleceğe uygun bir yazılım işiniz mi var?</p>
+                            <h1 className={styles.header}>{t.contactBnrh1}</h1>
+                            <p className={styles.text}>{t.contactBnrText}</p>
                         </div>
                     </div>
                 </div>
@@ -59,13 +66,13 @@ const Contact = () => {
                     </div>
                     <div className={styles.row}>
                         <div className={styles.column}>
-                            <h6 className={styles.phoneHeader}>ARAMAK İÇİN</h6>
+                            <h6 className={styles.phoneHeader}>{t.call}</h6>
                             <div className={styles.phone}>
                                 <a href="#!" className={styles.number}>+90 (850) 302-1660</a>
                             </div>
                         </div>
                         <div style={{ marginTop: "3rem" }} className={styles.column}>
-                            <h6 className={styles.phoneHeader}>EPOSTA YAZIN?</h6>
+                            <h6 className={styles.phoneHeader}>{t.email}</h6>
                             <div className={styles.phone}>
                                 <a href="#!" className={styles.number}>iletisim@ileriisler.com</a>
                             </div>
@@ -77,7 +84,7 @@ const Contact = () => {
                 <div className={styles.container}>
                     <div className={styles.row}>
                         <div className={styles.column}>
-                            <h2 className={styles.contactHeader}>Kısaca yazıp mı konuşalım?</h2>
+                            <h2 className={styles.contactHeader}>{t.formHeader}</h2>
                         </div>
                     </div>
                     <div className={styles.row}>
@@ -99,17 +106,17 @@ const Contact = () => {
                                     <div className={styles.formColumn}>
                                         <div className={styles.formGroup}>
                                         <label className={styles.label} htmlFor="name">
-                                            Name
+                                            {t.formName}
                                         </label>
-                                        <input placeholder="Kim?" className={styles.input} {...register('name', { required: true })} />
+                                        <input placeholder={t.formNameP} className={styles.input} {...register('name', { required: true })} />
                                         </div>
                                     </div>
                                     <div className={styles.formColumn}>
                                     <div className={styles.formGroup}>
                                         <label className={styles.label} htmlFor="email">
-                                            Email
+                                            {t.formMail}
                                         </label>
-                                        <input placeholder="ornek@benimurunum.com" className={styles.input} {...register('email', { required: true })} />
+                                        <input placeholder={t.formMailP}  className={styles.input} {...register('email', { required: true })} />
                                     </div>
                                     </div>
                                 </div>
@@ -117,15 +124,15 @@ const Contact = () => {
                                     <div className={styles.messageColumn}>
                                         <div className={styles.formGroupMsg}>
                                         <label className={styles.label} htmlFor="message">
-                                            Message
+                                            {t.formMsg}
                                         </label>
-                                        <textarea placeholder="Şimdi şöyle bir düşümüz var..." className={styles.message} rows="5" {...register('message', { required: true })} />
+                                        <textarea placeholder={t.formMsgP}  className={styles.message} rows="5" {...register('message', { required: true })} />
                                         </div>
                                     </div>
                                 </div>
                                 <div className={styles.row}>
                                     <div className={styles.buttonColumn}>
-                                        <button className={styles.submit} type="submit">Gönder!</button>
+                                        <button className={styles.submit} type="submit">{t.formButton}</button>
                                     </div>
                                 </div>
                             </form>
