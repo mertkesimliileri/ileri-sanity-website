@@ -1,26 +1,43 @@
 import React from 'react'
 import styles from "./footer.module.css"
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import tr from "../Locales/tr";
-import en from "../Locales/en";
-import { useState, useEffect } from 'react';
 
-const Footer = () => {
-    const router = useRouter();
-    const { locale, defaultLocale } = router;
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+        locale,
+      ...(await serverSideTranslations(locale, [
+        'common',
+      ])),
+      // Will be passed to the page component as props
+    },
+  }
+}
+
+
+const Footer = (props) => {
     const [windowWidth, setWindowWidth] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
-
-    const t = locale === "en" ? en : tr;
+    const { t } = useTranslation('common')
+    const router = useRouter();
+    const { locale } = router;
+    let localeTxt;
+    if(locale === "tr") {
+        localeTxt= "en"
+    } else {
+        localeTxt ="tr"
+    }
 
     const handleLocale = (e) => {
-        let locale = e.target.value;
-        if(locale === "tr") {
-            locale = "en"
+        if(e.target.value === "tr") {
+            let locale = "tr"
             router.push("/", "/", { locale });
         } else {
-            locale = "tr"
+            let locale = "en"
             router.push("/", "/", { locale });
         }
     }
@@ -46,11 +63,6 @@ const Footer = () => {
         }
     });
 
-    const localeOptions = [
-        { value: 'en', label: 'EN' },
-        { value: 'tr', label: 'TR' },
-    ];
-
     return (
         <footer className={styles.footer}>
             <div className={styles.container}>
@@ -60,13 +72,13 @@ const Footer = () => {
                             className={styles.footerBrand}
                             src='https://www.ileriisler.com/storage/temp/public/imageresizecache/687/218/d69/687218d69094c0711c78d7da917b41022d25f6a2c85968887e62e96df8b2d5c3.png'
                             alt='ileriişler'></img>
-                        <p className={styles.text}>{t.footerText}</p>
+                        <p className={styles.text}>{t('footerText')}</p>
                     </div>
                     <div className={styles.column}>
                         <ul className={styles.list}>
                             <li className={styles.item}>
                                 <Link className={styles.text} href="/about">
-                                    {t.about}
+                                    {t('about')}
                                 </Link>
                             </li>
                         </ul>
@@ -75,7 +87,7 @@ const Footer = () => {
                         <ul className={styles.list}>
                             <li className={styles.item}>
                                 <Link className={styles.text} href="/projects">
-                                    {t.works}
+                                    {t('works')}
                                 </Link>
                             </li>
                         </ul>
@@ -84,7 +96,7 @@ const Footer = () => {
                         <ul className={styles.list}>
                             <li className={styles.item}>
                                 <Link className={styles.text} href="/career">
-                                    {t.join}
+                                    {t('join')}
                                 </Link>
                             </li>
                         </ul>
@@ -93,7 +105,7 @@ const Footer = () => {
                         <div className={styles.column}>
                             <ul className={styles.list}>
                                 <li className={styles.item}>
-                                    <button className={styles.navLinkButton} value={locale} onClick={handleLocale}>{locale} </button>
+                                    <button className={styles.navLinkButton} value={localeTxt} onClick={handleLocale}>{localeTxt} </button>
                                 </li>
                             </ul>
                         </div> : undefined}

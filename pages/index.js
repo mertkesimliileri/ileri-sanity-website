@@ -2,32 +2,40 @@ import React from 'react'
 import styles from "./home.module.css"
 import Link from 'next/link'
 import { AiOutlineArrowRight } from "@react-icons/all-files/ai/AiOutlineArrowRight";
-import Navbar from "../Layout/navbar"
-import Footer from "../Layout/footer"
-import { useRouter } from 'next/router';
-import tr from "../Locales/tr";
-import en from "../Locales/en";
+import Navbar from "./navbar"
+import Footer from "./footer"
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next';
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        'common',
+      ])),
+      // Will be passed to the page component as props
+    },
+  }
+}
 
 
 
 const Home = () => {
-    const router = useRouter();
-    const { locale, defaultLocale } = router;
-
-    const t = locale === "en" ? en : tr;
+    const { t } = useTranslation('common')
+   
     return (
         <><Navbar /><section className={styles.home}>
             <div className={styles.container}>
                 <div className={styles.row}>
                     <div className={styles.column}>
                         <h6 className={styles.textUppercase}>{t.homeh6}</h6>
-                        <h1 className={styles.header}>{t.companyName}</h1>
+                        <h1 className={styles.header}>{t('companyName')}</h1>
                         <p className={styles.text}>
-                            {t.homeText}
+                        {t('homeText')}
                         </p>
                         <p className={styles.buttonWrapper}>
                             <Link href="/contact">
-                                <a className={styles.button}>{t.homeButton} <AiOutlineArrowRight className={styles.icon} /></a>
+                                <a className={styles.button}>{t('homeButton')}<AiOutlineArrowRight className={styles.icon} /></a>
                             </Link>
                         </p>
                     </div>

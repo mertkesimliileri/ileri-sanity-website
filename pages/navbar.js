@@ -4,32 +4,46 @@ import styles from "./navbar.module.css"
 import { useState, useEffect } from 'react'
 import { IoCloseOutline } from "@react-icons/all-files/io5/IoCloseOutline";
 import { useRouter } from 'next/router';
-import tr from "../Locales/tr";
-import en from "../Locales/en";
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+        locale,
+      ...(await serverSideTranslations(locale, [
+        'common',
+      ])),
+      // Will be passed to the page component as props
+    },
+  }
+}
 
 
 const Navbar = () => {
     const [windowWidth, setWindowWidth] = useState(null);
     const [isVisible, setIsVisible] = useState(false);
-    const [select, setSelect] = useState(null);
     const [display, setDisplay] = useState("hidden");
+    const { t } = useTranslation('common')
     const router = useRouter();
-    const { locale, defaultLocale } = router;
-
-    const t = locale === "en" ? en : tr;
+    const { locale } = router;
+    let localeTxt;
+    if(locale === "tr") {
+        localeTxt= "en"
+    } else {
+        localeTxt ="tr"
+    }
 
     const handleLocale = (e) => {
-        let locale = e.target.value;
-        if(locale === "tr") {
-            locale = "en"
+        if(e.target.value === "tr") {
+            let locale = "tr"
             router.push("/", "/", { locale });
         } else {
-            locale = "tr"
+            let locale = "en"
             router.push("/", "/", { locale });
         }
     }
-
 
     useEffect(() => {
         setWindowWidth(window.innerWidth);
@@ -60,14 +74,9 @@ const Navbar = () => {
         setDisplay("hidden");
     }
 
-    const localeOptions = [
-        { value: 'en', label: 'EN' },
-        { value: 'tr', label: 'TR' },
-    ];
-
     return (
         <><Head>
-            <title>İleri İşler</title>
+            <title>{t('companyName')}</title>
             <script src="https://unpkg.com/@mux/mux-player"></script>
         </Head><header className={styles.navbar}>
                 <div className={styles.containerFluid}>
@@ -84,21 +93,21 @@ const Navbar = () => {
                         </button> :
                         <div className={styles.navbarCollapse}>
                             <Link className={styles.navLink} href="/" exact>
-                                <a className={styles.navLink}>{t.home}</a>
+                                <a className={styles.navLink}>{t('home')}</a>
                             </Link>
                             <Link className={styles.navLink} href="/about">
-                                <a className={styles.navLink}>{t.about}</a>
+                                <a className={styles.navLink}>{t('about')}</a>
                             </Link>
                             <Link className={styles.navLink} href="/projects">
-                                <a className={styles.navLink}>{t.works}</a>
+                                <a className={styles.navLink}>{t('works')}</a>
                             </Link>
                             <Link className={styles.navLink} href="/career">
-                                <a className={styles.navLink}>{t.join}</a>
+                                <a className={styles.navLink}>{t('join')}</a>
                             </Link>
                             <Link className={styles.navLink} href="/contact">
-                                <a className={styles.navLink}>{t.contact}</a>
+                                <a className={styles.navLink}>{t('contact')}</a>
                             </Link>
-                            <button className={styles.navLinkButton} value={locale} onClick={handleLocale}>{locale} </button>
+                            <button className={styles.navLinkButton} value={localeTxt} onClick={handleLocale}>{localeTxt} </button>
 
                         </div>}
                     <div style={{ visibility: display }} className={styles.navbarm}>
@@ -107,19 +116,19 @@ const Navbar = () => {
                         </button>
                         <ul className={styles.navbarNav}>
                             <Link className={styles.navmLinkActive} href="/" exact>
-                                <a className={styles.navmLinkActive}>{t.home}</a>
+                                <a className={styles.navmLinkActive}>{t('home')}</a>
                             </Link>
                             <Link className={styles.navmLink} href="/about">
-                                <a className={styles.navmLink}>{t.about}</a>
+                                <a className={styles.navmLink}>{t('about')}</a>
                             </Link>
                             <Link className={styles.navmLink} href="/projects">
-                                <a className={styles.navmLink}>{t.works}</a>
+                                <a className={styles.navmLink}>{t('works')}</a>
                             </Link>
                             <Link className={styles.navmLink} href="/career">
-                                <a className={styles.navmLink}>{t.join}</a>
+                                <a className={styles.navmLink}>{t('join')}</a>
                             </Link>
                             <Link className={styles.navmLink} href="/contact">
-                                <a className={styles.navmLink}>{t.contact}</a>
+                                <a className={styles.navmLink}>{t('contact')}</a>
                             </Link>
                         </ul>
                     </div>

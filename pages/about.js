@@ -3,21 +3,29 @@ import { useState, useEffect } from 'react'
 import sanityClient from "../client"
 import styles from "./about.module.css"
 import SanityBlockContent from '@sanity/block-content-to-react'
-import Navbar from "../Layout/navbar"
-import Footer from "../Layout/footer"
-import { useRouter } from 'next/router';
-import tr from "../Locales/tr";
-import en from "../Locales/en";
+import Navbar from "./navbar"
+import Footer from "./footer"
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next';
 
-const About = () => {
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+        locale,
+      ...(await serverSideTranslations(locale, [
+        'common',
+      ])),
+      // Will be passed to the page component as props
+    },
+  }
+}
+
+const About = (props) => {
     const [aboutData, setAbout] = useState(null);
-    const router = useRouter();
-    const { locale, defaultLocale } = router;
-
-    const t = locale === "en" ? en : tr;
+    const { t } = useTranslation('common')
 
     useEffect(() => {
-        sanityClient.fetch(`*[_type == "about" && language == '${locale}']{
+        sanityClient.fetch(`*[_type == "about" && language == '${props.locale}']{
         publishedAt,
         body
     }`)
@@ -30,7 +38,7 @@ const About = () => {
                 <div className={styles.row}>
                     <div className={styles.column}>
                         <h1 className={styles.header}>
-                            {t.about}
+                            {t('about')}
                         </h1>
                         {aboutData && aboutData.map((post, index) => <>
                             <div className={styles.sticker}>
