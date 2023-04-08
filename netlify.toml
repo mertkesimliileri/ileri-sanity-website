@@ -3,8 +3,5 @@
   publish = ".next"
   functions = "functions/"
 
-[[plugins]]
-  package = "netlify-plugin-cypress"
-
 [functions]
   node_bundler = "esbuild"
